@@ -35,11 +35,21 @@
 			<version>5.1.0</version>
 		</dependency>
 
-		<!-- Full page screenshot dependency -->
+		<!-- Log back dependency -->
 		<dependency>
-			<groupId>ru.yandex.qatools.ashot</groupId>
-			<artifactId>ashot</artifactId>
-			<version>1.5.4</version>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.2.11</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.36</version>
 		</dependency>
 
 
@@ -49,6 +59,14 @@
 			<artifactId>testng</artifactId>
 			<version>7.5</version>
 		</dependency>
+
+		<!-- Extent report dependency -->
+		<dependency>
+			<groupId>com.relevantcodes</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>2.41.2</version>
+		</dependency>
+
 
 	</dependencies>
 </project>
