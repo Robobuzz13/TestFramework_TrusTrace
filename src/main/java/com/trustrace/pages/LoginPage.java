@@ -28,7 +28,7 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	@FindBy(id = "login-button")
 	WebElement loginBtn;
 
-	@FindBy(css = ".error-message-container error")
+	@FindBy(css = "div[class='error-message-container error']")
 	WebElement errorMsg;
 
 	/**
@@ -65,9 +65,19 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	 */
 	public void loginToApplication(String userName, String password) {
 		CommonMethods.waitForElementVisibility(userNameTxtFld, driver);
-		CommonMethods.setText(userNameTxtFld, userName);
-		CommonMethods.setText(passwordTxtFld, password);
-		CommonMethods.click(loginBtn);
+		CommonMethods.setText(userNameTxtFld, userName, "UserName");
+		CommonMethods.setText(passwordTxtFld, password, "Password");
+		CommonMethods.click(loginBtn, "Login button");
+	}
+
+	/**
+	 * Method to get error message
+	 *
+	 */
+	public String loginErrorMessage() {
+		CommonMethods.waitForElementVisibility(errorMsg, driver);
+		String title = CommonMethods.getText(errorMsg, driver, "Error message");
+		return title;
 	}
 
 }

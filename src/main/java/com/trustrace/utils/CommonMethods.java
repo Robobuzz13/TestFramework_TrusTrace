@@ -129,11 +129,11 @@ public class CommonMethods {
 	/**
 	 * Clear end enter text in text box
 	 */
-	public static void setText(WebElement element, String value) {
+	public static void setText(WebElement element, String value, String fieldName) {
 		try {
 			element.clear();
 			element.sendKeys(value);
-			Log.message(value + " entered in textbox successfully");
+			Log.message(value + " entered in " + fieldName + " textbox successfully");
 		} catch (Exception e) {
 			Log.message("failed to enter" + value + "into" + "textbox " + element.toString());
 		}
@@ -150,7 +150,7 @@ public class CommonMethods {
 			if (element.isDisplayed()) {
 				elementPresent = true;
 			}
-			Log.message(element.toString() + "is Displayed successfully");
+			Log.message("Element displayed successfully");
 		} catch (Exception e) {
 			Log.message("Verify Element Present failed" + e.toString());
 		}
@@ -179,10 +179,10 @@ public class CommonMethods {
 	 *
 	 * @param element
 	 */
-	public static void click(WebElement element) {
+	public static void click(WebElement element, String fieldName) {
 		try {
 			element.click();
-			Log.message("element is clicked successfully");
+			Log.message(fieldName + " is clicked successfully");
 
 		} catch (Exception e) {
 			Log.message(element.toString() + "element is not clicked" + e.getMessage());
@@ -193,14 +193,14 @@ public class CommonMethods {
 	 * getting the text from non editable field
 	 */
 
-	public static String getText(WebElement element, WebDriver driver) {
+	public static String getText(WebElement element, WebDriver driver, String fieldName) {
 		String text = null;
 		try {
 			waitForElementVisibility(element, driver);
 			if (element.getText() != null) {
 				text = element.getText();
 			}
-			Log.message("text retrieved successfully from element");
+			Log.message(fieldName + " retrieved successfully from element");
 		} catch (Exception e) {
 			Log.message("text is not retrieved from element" + element.toString() + e.getMessage());
 		}

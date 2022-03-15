@@ -1,5 +1,6 @@
 package com.trustrace.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -54,10 +55,66 @@ public class ProductPage extends LoadableComponent<ProductPage> {
 		Log.assertThat(url.equals("Swag Labs"), "Page loaded successfully", "Page not loaded successfully");
 	}
 
+	/**
+	 * Method to get section title
+	 *
+	 */
 	public String sectionTitle() {
 		CommonMethods.waitForElementVisibility(sectionTitleTxt, driver);
-		String title = CommonMethods.getText(sectionTitleTxt, driver);
+		String title = CommonMethods.getText(sectionTitleTxt, driver, "Section Name");
 		return title;
+	}
+
+	/**
+	 * Method to get cart item count
+	 *
+	 */
+	public String cartItemCount() {
+		CommonMethods.waitForElementVisibility(cartCountTxt, driver);
+		String title = CommonMethods.getText(cartCountTxt, driver, "Cart item count");
+		return title;
+	}
+
+	/**
+	 * Method to validate remove button
+	 *
+	 */
+	public boolean validateRemoveBtn() {
+		CommonMethods.waitForElementVisibility(removeBtn, driver);
+		boolean validateRemoveButton = CommonMethods.isElementPresent(removeBtn, driver);
+		return validateRemoveButton;
+	}
+
+	/**
+	 * Method to validate cart link
+	 *
+	 */
+	public boolean validateCartLink() {
+		CommonMethods.waitForElementVisibility(cartLnk, driver);
+		boolean validateRemoveButton = CommonMethods.isElementPresent(cartLnk, driver);
+		return validateRemoveButton;
+	}
+
+	/**
+	 * Method to click add to cart
+	 *
+	 */
+	public void clickAddToCart(String productName) {
+		String cartElement = String.format(
+				"//div[text()='%s']/ancestor::div[@class='inventory_item_description']//button[@id='add-to-cart-sauce-labs-backpack']",
+				productName);
+		WebElement addToCart = driver.findElement(By.xpath(cartElement));
+		CommonMethods.waitForElementVisibility(addToCart, driver);
+		CommonMethods.click(addToCart, "Add to cart link");
+	}
+
+	/**
+	 * Method to click cart link
+	 *
+	 */
+	public void clickCartLink() {
+		CommonMethods.waitForElementVisibility(cartLnk, driver);
+		CommonMethods.click(cartLnk, "Cart link");
 	}
 
 }

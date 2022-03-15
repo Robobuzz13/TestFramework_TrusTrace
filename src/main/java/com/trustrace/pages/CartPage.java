@@ -8,6 +8,7 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
+import com.trustrace.utils.CommonMethods;
 import com.trustrace.utils.Log;
 
 public class CartPage extends LoadableComponent<CartPage> {
@@ -78,6 +79,98 @@ public class CartPage extends LoadableComponent<CartPage> {
 		}
 		String url = driver.getTitle();
 		Log.assertThat(url.equals("Swag Labs"), "Page loaded successfully", "Page not loaded successfully");
+	}
+
+	/**
+	 * Method to get product title
+	 *
+	 */
+	public String productTitle() {
+		CommonMethods.waitForElementVisibility(itemNameTxt, driver);
+		String title = CommonMethods.getText(itemNameTxt, driver, "Product Title");
+		return title;
+	}
+
+	/**
+	 * Method to validate remove button
+	 *
+	 */
+	public boolean validateRemoveBtn() {
+		CommonMethods.waitForElementVisibility(removeBtn, driver);
+		boolean validateRemoveButton = CommonMethods.isElementPresent(removeBtn, driver);
+		return validateRemoveButton;
+	}
+
+	/**
+	 * Method to validate continue shopping button
+	 *
+	 */
+	public boolean validateContinueShoppingBtn() {
+		CommonMethods.waitForElementVisibility(continueShoppingBtn, driver);
+		boolean validateRemoveButton = CommonMethods.isElementPresent(continueShoppingBtn, driver);
+		return validateRemoveButton;
+	}
+
+	/**
+	 * Method to validate checkOut button
+	 *
+	 */
+	public boolean validateCheckOutBtn() {
+		CommonMethods.waitForElementVisibility(checkoutBtn, driver);
+		boolean validateRemoveButton = CommonMethods.isElementPresent(checkoutBtn, driver);
+		return validateRemoveButton;
+	}
+
+	/**
+	 * Method to click checkout button
+	 *
+	 */
+	public void clickCheckOutBtn() {
+		CommonMethods.waitForElementVisibility(checkoutBtn, driver);
+		CommonMethods.click(checkoutBtn, "Check out");
+	}
+
+	/**
+	 * Method to update customer detail
+	 *
+	 * @param userName
+	 * @param password
+	 */
+	public void updateUserDetail(String firstName, String lastName, String postalCode) {
+		CommonMethods.waitForElementVisibility(firstNameTxtFld, driver);
+		CommonMethods.setText(firstNameTxtFld, firstName, "First name");
+		CommonMethods.setText(lastNameTxtFld, lastName, "Last name");
+		CommonMethods.setText(postalCodeTxtFld, postalCode, "Postal code");
+		CommonMethods.click(continueBtn, "Continue button");
+	}
+
+	/**
+	 * Method to click finish button
+	 *
+	 */
+	public void clickFinishBtn() {
+		CommonMethods.waitForElementVisibility(finishBtn, driver);
+		CommonMethods.click(finishBtn, "Finish button");
+	}
+
+	/**
+	 * Method to get success title
+	 *
+	 */
+	public String successTitle() {
+		CommonMethods.waitForElementVisibility(succesNameTxt, driver);
+		String title = CommonMethods.getText(succesNameTxt, driver, "Success Message");
+		return title;
+	}
+
+	/**
+	 * Method to get success description
+	 *
+	 */
+	public String successDescription() {
+		CommonMethods.waitForElementVisibility(succesDescriptionTxt, driver);
+		String title = CommonMethods.getText(succesDescriptionTxt, driver, "Success Description");
+		return title;
 	}
 
 }

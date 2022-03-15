@@ -35,7 +35,7 @@ public class LoginTest {
 	}
 
 	@Test(description = "Verify user able to login successfully with valid credential")
-	public void tcRealizeBvt020() throws Exception {
+	public void validLogin() throws Exception {
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.newWebDriverInstance(webSite, browser);
@@ -58,6 +58,104 @@ public class LoginTest {
 
 			Log.assertThat(productPage.sectionTitle().equals("PRODUCTS"), "User logged in successfully",
 					"Unable to log in", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e, driver);
+		} finally {
+			Log.endTestCase();
+			driver.quit();
+		}
+	}
+
+	@Test(description = "Verify user cannot able to login with empty user name")
+	public void emptyUserName() throws Exception {
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.newWebDriverInstance(webSite, browser);
+
+		// Loading the test data from excel using the test case id
+		HashMap<String, String> testData = DataUtils.getTestData(fileName, "LoginTest", "TC002");
+
+		String username = testData.get("userName").toString();
+		String password = testData.get("password").toString();
+
+		Log.testCaseInfo("Verify user able to login successfully with empty user name");
+		try {
+
+			// Step 1: Entering the login credentials
+			LoginPage loginPage = new LoginPage(driver);
+			loginPage.loginToApplication(username, password);
+
+			// Step 2: Validate error message
+			Log.assertThat(loginPage.loginErrorMessage().equals("Epic sadface: Username is required"),
+					"error message obtained successfully", "error message not obtained", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e, driver);
+		} finally {
+			Log.endTestCase();
+			driver.quit();
+		}
+	}
+
+	@Test(description = "Verify user cannot able to login with empty password")
+	public void emptyPassword() throws Exception {
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.newWebDriverInstance(webSite, browser);
+
+		// Loading the test data from excel using the test case id
+		HashMap<String, String> testData = DataUtils.getTestData(fileName, "LoginTest", "TC003");
+
+		String username = testData.get("userName").toString();
+		String password = testData.get("password").toString();
+
+		Log.testCaseInfo("Verify user able to login successfully with empty passwordl");
+		try {
+
+			// Step 1: Entering the login credentials
+			LoginPage loginPage = new LoginPage(driver);
+			loginPage.loginToApplication(username, password);
+
+			// Step 2: Validate error message
+			Log.assertThat(loginPage.loginErrorMessage().equals("Epic sadface: Password is required"),
+					"error message obtained successfully", "error message not obtained", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e, driver);
+		} finally {
+			Log.endTestCase();
+			driver.quit();
+		}
+	}
+
+	@Test(description = "Verify user cannot able to login with invalid credential")
+	public void invalidCredential() throws Exception {
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.newWebDriverInstance(webSite, browser);
+
+		// Loading the test data from excel using the test case id
+		HashMap<String, String> testData = DataUtils.getTestData(fileName, "LoginTest", "TC004");
+
+		String username = testData.get("userName").toString();
+		String password = testData.get("password").toString();
+
+		Log.testCaseInfo("Verify user able to login successfully with invalid credential");
+		try {
+
+			// Step 1: Entering the login credentials
+			LoginPage loginPage = new LoginPage(driver);
+			loginPage.loginToApplication(username, password);
+
+			/// Step 2: Validate error message
+			Log.assertThat(
+					loginPage.loginErrorMessage()
+							.equals("Epic sadface: Username and password do not match any user in this service"),
+					"error message obtained successfully", "error message not obtained", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
