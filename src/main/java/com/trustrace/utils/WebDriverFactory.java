@@ -20,7 +20,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class WebDriverFactory {
 
 	private static org.slf4j.Logger logger = LoggerFactory.getLogger(WebDriverFactory.class);
-	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
 
 	/**
 	 * Initiate webdriver based on config file
@@ -28,8 +27,7 @@ public class WebDriverFactory {
 	 * @return webDriver
 	 * @throws Exception
 	 */
-	public static WebDriver newWebDriverInstance() throws Exception {
-		String browserType = configProperty.getProperty("browser");
+	public static WebDriver newWebDriverInstance(String website, String browserType) throws Exception {
 		WebDriver webdriver = null;
 		try {
 			switch (browserType.toLowerCase()) {
@@ -47,6 +45,7 @@ public class WebDriverFactory {
 				WebDriverManager.chromedriver().setup();
 				webdriver = new ChromeDriver(options);
 				((JavascriptExecutor) webdriver).executeScript("window.resizeTo(screen.width, screen.height);");
+				webdriver.get(website);
 				break;
 
 			case "firefox":
@@ -61,6 +60,7 @@ public class WebDriverFactory {
 				WebDriverManager.firefoxdriver().setup();
 				webdriver = new FirefoxDriver(firefoxOptions);
 				((JavascriptExecutor) webdriver).executeScript("window.resizeTo(screen.width, screen.height);");
+				webdriver.get(website);
 				break;
 
 			case "ie":
@@ -74,6 +74,7 @@ public class WebDriverFactory {
 				WebDriverManager.iedriver().setup();
 				webdriver = new InternetExplorerDriver(ieOptions);
 				((JavascriptExecutor) webdriver).executeScript("window.resizeTo(screen.width, screen.height);");
+				webdriver.get(website);
 				break;
 
 			case "chromium_edge":
@@ -82,6 +83,7 @@ public class WebDriverFactory {
 				edgeOptions.addArguments("headless");
 				WebDriverManager.edgedriver().setup();
 				webdriver = new EdgeDriver(edgeOptions);
+				webdriver.get(website);
 
 			}
 		} catch (Exception e) {

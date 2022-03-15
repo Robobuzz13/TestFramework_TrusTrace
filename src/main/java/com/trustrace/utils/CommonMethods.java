@@ -182,7 +182,7 @@ public class CommonMethods {
 	public static void click(WebElement element) {
 		try {
 			element.click();
-			Log.message(element.toString() + "element is clicked successfully");
+			Log.message("element is clicked successfully");
 
 		} catch (Exception e) {
 			Log.message(element.toString() + "element is not clicked" + e.getMessage());
@@ -200,7 +200,7 @@ public class CommonMethods {
 			if (element.getText() != null) {
 				text = element.getText();
 			}
-			Log.message("text retrieved successfully from element" + element.toString());
+			Log.message("text retrieved successfully from element");
 		} catch (Exception e) {
 			Log.message("text is not retrieved from element" + element.toString() + e.getMessage());
 		}
