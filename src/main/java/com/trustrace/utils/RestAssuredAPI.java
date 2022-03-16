@@ -305,4 +305,11 @@ public class RestAssuredAPI {
 		return RestAssured.given().baseUri(baseUrl).headers(headers).cookies(cookies).body(payload).put(endPoint);
 	}
 
+	/**
+	 * Standard POST with baseUrl, endpoint
+	 */
+	public static Response post(String baseUrl, String payload, String endPoint) {
+		return RestAssured.given().baseUri(baseUrl).body(payload).post(endPoint);
+	}
+
 }
