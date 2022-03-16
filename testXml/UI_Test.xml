@@ -6,10 +6,9 @@
 
 	<test name="Smoke">
 		<classes>
-			<class name="com.trustrace.test_automation_framework.LoginTest" />
-			<class
-				name="com.trustrace.test_automation_framework.ProductTest" />
-			<class name="com.trustrace.test_automation_framework.CartTest" />
+			<class name="com.trustrace.uitest.LoginTest" />
+			<class name="com.trustrace.uitest.ProductTest" />
+			<class name="com.trustrace.uitest.CartTest" />
 		</classes>
 	</test>
 </suite>
