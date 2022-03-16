@@ -1,4 +1,4 @@
-package com.trustrace.test_automation_framework;
+package com.trustrace.uitest;
 
 import java.util.HashMap;
 
